@@ -1,0 +1,17 @@
+.col-md-3 {
+  border: 2px solid black;
+  height: 1000px;
+}
+
+.col-md-9 {
+  border: 2px solid black;
+  height: 1000px;
+}
+
+button:hover {
+  background: lightgrey;
+}
+
+.list-group-item {
+  width: 100%;
+}

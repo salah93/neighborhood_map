@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Salah Ahmed">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- personal stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<div class="container-fluid">
+      <div class="row">
+        <div class="list-group col-md-3 col-sm-3 col-lg-3">
+          <div class="row">
+            <div class='col-md-12'>
+              <input placeholder="Filter through list" id="filter" data-bind="textInput: filter()" class="form-control">
+            </div>
+          </div>
+          <hr>
+          <!-- ko foreach: currentList -->
+          <div class="row">
+            <div class='col-md-12'>
+              <button data-bind="text: name" class="list-group-item" type="button"></button>
+            </div>
+          </div>
+          <!-- /ko -->
+        </div>
+        <div id="map" class="col-md-9 col-sm-9 col-lg-9">
+        </div>
+      </div>
+		</div>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- knockoutjs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+    <!-- bootstrap js -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!-- personal js -->
+    <script src="app.js"></script>
+    <script src="map.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places,drawing,geometry&key=AIzaSyB3g2vN2jgGJHVc30WX66C1vmIA5gj6LwQ&v=3&callback=initMap"></script>
+	</body>
+</html>
