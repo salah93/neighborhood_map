@@ -1,8 +1,9 @@
 var map;
-var zoomLevel = 13;
 var markers = []
+var infowindow = null;
 
 function initMap () {
+  var zoomLevel = 13;
   var nightMapType = new google.maps.StyledMapType(
       [
         {
@@ -219,8 +220,8 @@ function initMap () {
   });
   map.mapTypes.set('night_time', nightMapType);
   map.setMapTypeId('night_time');
-
-  markers = places.map(function(p){
+  //markers = places.map(function(p){
+  markers = initVariables().map(function(p){
     return new google.maps.Marker({
       position: p.location,
       title: p.name,
@@ -229,6 +230,7 @@ function initMap () {
       map: map,
     });
   });
+
   var bounds = new google.maps.LatLngBounds();
   for (var i = 0; i < markers.length; i++){
     bounds.extend(markers[i].position);
@@ -239,25 +241,55 @@ function initMap () {
             this.setZoom(zoomLevel);
         }
   });
-  var infowindow = new google.maps.InfoWindow();
 
+
+  infowindow = new google.maps.InfoWindow();
+  infowindow.addListener('closeclick', function()  {
+    closeInfoWindow(infowindow); 
+  });
+
+  markers.forEach(m => m.addListener('click', function() {
+    setInfoWindow(m, infowindow) 
+  }))
   $('.list-group').click(function(data){
     var index = parseInt(data.target.id)
     var marker = markers[index];
-    if (infowindow.marker != marker) {
-      infowindow.marker = marker;
-      var content = `<div><h1>${marker.title}</h1></div>`
-      infowindow.setContent(content);
-      infowindow.open(map, marker);
-    }
+    setInfoWindow(marker, infowindow);
   });
 }
 
-function hideMarkers() {
-  markers.forEach(m => m.setMap(null));
+function closeInfoWindow(iw){
+  iw.close();
+  iw.marker = null;
+}
+
+function hideMarker(marker) {
+  if (infowindow.marker == marker)
+    closeInfoWindow(infowindow);
+  marker.setMap(null);
+}
+
+function setInfoWindow(marker, infowindow) {
+  if (infowindow.marker != marker) {
+    infowindow.marker = marker;
+    var content = `<div><h1>${marker.title}</h1></div>`
+    infowindow.setContent(content);
+    infowindow.open(map, marker);
+  }
 }
 
 function dropMarkers(indices){
-  hideMarkers();
-  indices.forEach(i => markers[i].setMap(map));
+  var index = 0;
+  for (var i=0; i < markers.length; i++) {
+    if (i != indices[index]){
+      hideMarker(markers[i]);
+    }
+    else {
+      if (markers[i].getMap() == null){
+        markers[i].setAnimation(google.maps.Animation.DROP);
+        markers[i].setMap(map);
+      }
+      index++;
+    }
+  }
 }
