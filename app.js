@@ -7,6 +7,7 @@ var places = [
       },
       address: "310 flatbush ave brooklyn, ny",
       id: "chij3zhe86hbwokr_87cnlsalai",
+      index: 0,
   },
   {
       name: "University",
@@ -16,6 +17,7 @@ var places = [
       },
       address: "Washington Square Park, New York, NY 10012, USA",
       id: "ChIJjX494pBZwokRGH620d9eYfo",
+      index: 1,
   },
 ];
 
@@ -30,7 +32,7 @@ var ViewModel = function() {
   this.filter = function() {
     var filter = $('#filter').val();
     this.currentList(this.placesList.filter(place => place.name.match(new RegExp(`.*${filter}.*`))));
-    //dropMarkers(this.currentList());
+    //dropMarkers(this.currentList().map(p => p.index));
   };
 }
 
@@ -39,6 +41,7 @@ var Place = function(data) {
   this.location = data.location;
   this.address = data.address;
   this.id = data.id;
+  this.index = data.index;
 }
 
 ko.applyBindings(new ViewModel());

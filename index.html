@@ -15,20 +15,24 @@
 	<body>
 		<div class="container-fluid">
       <div class="row">
-        <div class="list-group col-md-3 col-sm-3 col-lg-3">
+        <div class="col-md-3 col-sm-3 col-lg-3">
           <div class="row">
             <div class='col-md-12'>
               <input placeholder="Filter through list" id="filter" data-bind="textInput: filter()" class="form-control">
             </div>
           </div>
           <hr>
-          <!-- ko foreach: currentList -->
-          <div class="row">
-            <div class='col-md-12'>
-              <button data-bind="text: name" class="list-group-item" type="button"></button>
+          <div class="list-group row">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+              <!-- ko foreach: currentList -->
+              <div class="row">
+                <div class='col-md-12'>
+                  <button data-bind="text: name, attr: {id: index}" class="list-group-item" type="button"></button>
+                </div>
+              </div>
+              <!-- /ko -->
             </div>
           </div>
-          <!-- /ko -->
         </div>
         <div id="map" class="col-md-9 col-sm-9 col-lg-9">
         </div>
