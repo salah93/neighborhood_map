@@ -2,6 +2,11 @@ var map;
 var markers = []
 var infowindow = null;
 
+function googleError() {
+  initVariables();
+  $('#map').append('<h1 class="text-center">Could not connect to Google Maps API</h1><img style="margin: auto; display: block" class="img-thumbnail" src="images/Happy-User-Web-Design.gif" alt="amir from collegehumor clapping his hands. Error gif">');
+}
+
 function initMap () {
   var zoomLevel = 13;
   var nightMapType = new google.maps.StyledMapType(
