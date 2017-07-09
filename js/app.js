@@ -1,4 +1,4 @@
-var ViewModel = function(places) {
+var ViewModel = function(places, map) {
   var self = this
   this.placesList = places.map(function(p){
     return new Place(p); 
@@ -11,7 +11,7 @@ var ViewModel = function(places) {
     var selected = this.placesList.filter(place => place.name.match(new RegExp(`.*${filter}.*`)));
     this.currentList(selected);
     var indices = selected.map(p => p.index);
-    dropMarkers(indices);
+    map.dropMarkers(indices);
   };
 }
 
@@ -24,7 +24,7 @@ var Place = function(data) {
 }
 
 
-function initVariables(){
+function initVariables(map){
   var places = [
     {
         name: "first job",
@@ -48,6 +48,6 @@ function initVariables(){
     },
   ];
 
-  ko.applyBindings(new ViewModel(places));
+  ko.applyBindings(new ViewModel(places, map));
   return places;
 }
