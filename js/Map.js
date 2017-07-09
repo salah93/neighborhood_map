@@ -231,7 +231,7 @@ var Map = function () {
 
     self.infowindow.addListener('closeclick', self.closeInfoWindow);
 
-    self.markers = initVariables(self).map(function(p){
+    self.markers = initVariables(self, false).map(function(p){
       return new google.maps.Marker({
         position: p.location,
         title: p.name,
@@ -263,8 +263,10 @@ var Map = function () {
     });
   };
 
+  // change to unSelectMarker
   self.closeInfoWindow = function () {
     self.infowindow.close();
+    self.infowindow.marker.setAnimation(null);
     self.infowindow.marker = null;
   }
 
@@ -274,9 +276,13 @@ var Map = function () {
     marker.setMap(null);
   };
 
+  // change to selectMarker
   self.setInfoWindow = function (marker) {
     if (self.infowindow.marker != marker) {
+      if (self.infowindow.marker)
+        self.closeInfoWindow(self.infowindow.marker);
       self.infowindow.marker = marker;
+      marker.setAnimation(google.maps.Animation.BOUNCE);
       var content = `<div><h1>${marker.title}</h1></div>`
       self.infowindow.setContent(content);
       self.infowindow.open(self.map, marker);

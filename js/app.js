@@ -1,10 +1,12 @@
-var ViewModel = function(places, map) {
+var ViewModel = function(places, map, error) {
   var self = this
   this.placesList = places.map(function(p){
     return new Place(p); 
   });
 
   this.currentList = ko.observableArray(this.placesList);
+
+  this.error = ko.observable(error);
 
   this.filter = function() {
     var filter = $('#filter').val();
@@ -24,7 +26,7 @@ var Place = function(data) {
 }
 
 
-function initVariables(map){
+function initVariables(map, error){
   var places = [
     {
         name: "first job",
@@ -48,6 +50,6 @@ function initVariables(map){
     },
   ];
 
-  ko.applyBindings(new ViewModel(places, map));
+  ko.applyBindings(new ViewModel(places, map, error));
   return places;
 }
