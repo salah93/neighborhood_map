@@ -23,6 +23,7 @@ var Place = function(data) {
   this.address = data.address;
   this.id = data.id;
   this.index = data.index;
+  this.anecdote = data.anecdote;
 }
 
 
@@ -37,6 +38,7 @@ function initVariables(map, error){
         address: "310 flatbush ave brooklyn, ny",
         id: "chij3zhe86hbwokr_87cnlsalai",
         index: 0,
+        anecdote: 'first job yo',
     },
     {
         name: "University",
@@ -47,6 +49,7 @@ function initVariables(map, error){
         address: "Washington Square Park, New York, NY 10012, USA",
         id: "ChIJjX494pBZwokRGH620d9eYfo",
         index: 1,
+        anecdote: 'university yo',
     },
   ];
 
