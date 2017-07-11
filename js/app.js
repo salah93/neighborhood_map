@@ -30,7 +30,7 @@ var Place = function(data) {
 function initVariables(map, error){
   var places = [
     {
-        icon: "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+        icon: "https://cdn.shopify.com/s/files/1/1061/1924/products/Slice_Of_Pizza_Emoji_large.png?v=1480481064",
         name: "Dani's House of Pizza",
         location: {
           lat: 40.708981,
@@ -50,7 +50,7 @@ function initVariables(map, error){
         id: "1c66c074132e003bebba0e17a3b92a9584676725",
         index: 1,
         anecdote: "marthas",
-        icon: "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+        icon: "https://cdn2.iconfinder.com/data/icons/food-desserts-drinks-and-sweets/512/cake1-512.png",
     }, {
         name: "Kew Gardens Cinemas",
         id: "7722282e33a1fd5b617ddc9f643433a2d4d82013",
@@ -61,7 +61,7 @@ function initVariables(map, error){
         address: "8105 Lefferts Blvd, Kew Gardens, NY 11415, United States",
         index: 2,
         anecdote: "good movies",
-        icon: "https://maps.gstatic.com/mapfiles/place_api/icons/movies-71.png",
+        icon: "http://www.freeiconspng.com/uploads/cinema-movie-theatre-icon-2.png",
     }, {
         name: "Queens Library at Briarwood",
         id: "e58d0c93a7058ca17db4dd580c07d81bd1eb954e",
@@ -72,7 +72,7 @@ function initVariables(map, error){
         address: "85-12 Main St, Briarwood, NY 11435, United States",
         index: 3,
         anecdote: "good books",
-        icon: "https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png",
+        icon: "https://cdn.pixabay.com/photo/2016/10/06/19/02/book-1719737_960_720.png",
     }, {
         name: "Junior High School 217 Robert A Van Wyck",
         id: "68346857b194bea0e1cef38caa8710ea6bf0e0be",
@@ -83,7 +83,7 @@ function initVariables(map, error){
         address: "85-05 144th St, Jamaica, NY 11435, United States",
         index: 4,
         anecdote: "basketball",
-        icon: "https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png",
+        icon: "https://upload.wikimedia.org/wikipedia/commons/d/db/Sports_portal_bar_icon.png",
     },
   ];
 
