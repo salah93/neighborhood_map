@@ -1,4 +1,4 @@
-var Map = function () {
+var Map = function() {
   var self = this;
   self.map = null;
   self.markers = []
@@ -6,9 +6,10 @@ var Map = function () {
   self.bounds = null
   self.nightMapType = null;
   self.zoomLevel = 13;
+  self.closeUp = 15;
   self.center = {lat: 40.7413548, lng: -73.9980244};
 
-  self.initMap = function () {
+  self.initMap = function() {
     self.infowindow = new google.maps.InfoWindow();
     self.bounds = new google.maps.LatLngBounds();
     self.nightMapType = new google.maps.StyledMapType(
@@ -236,8 +237,13 @@ var Map = function () {
         position: p.location,
         title: p.name,
         animation: google.maps.Animation.DROP,
-        id: p.id,
         map: self.map,
+        icon: {
+          url: p.icon,
+          scaledSize: new google.maps.Size(60, 60),
+          origin: new google.maps.Point(0, 0), // used if icon is a part of sprite, indicates image position in sprite
+          anchor: new google.maps.Point(20,40), // lets offset the marker image
+        },
       });
     });
 
@@ -246,50 +252,67 @@ var Map = function () {
     self.markers.forEach(m => m.addListener('click', function() {
       self.setInfoWindow(m)
     }))
-    $('.list-group').click(function(data){
-      var index = parseInt(data.target.id)
-      var marker = self.markers[index];
-      self.setInfoWindow(marker);
+    self.listTriggerEvents();
+  };
+
+  self.listTriggerEvents = function() {
+    $(".modal").on("show.bs.modal", function(e) {
+      self.closeInfoWindow();
+    });
+    $(".modal").on("hidden.bs.modal", function(e) {
+        var index = parseInt(e.target.id.substring(8));
+        var marker = self.markers[index];
+        self.map.setCenter(marker.position);
+        self.map.setZoom(self.closeUp);
+        self.setInfoWindow(marker);
     });
   };
 
   self.setBounds = function() {
     self.markers.forEach(m => self.bounds.extend(m.position));
     self.map.fitBounds(self.bounds);
+    /*
     google.maps.event.addListenerOnce(self.map, 'bounds_changed', function(event) {
           if (this.getZoom()){
               this.setZoom(self.zoomLevel);
           }
     });
+    */
   };
 
   // change to unSelectMarker
-  self.closeInfoWindow = function () {
+  self.closeInfoWindow = function() {
     self.infowindow.close();
-    self.infowindow.marker.setAnimation(null);
+    if (self.infowindow.marker)
+      self.infowindow.marker.setAnimation(null);
     self.infowindow.marker = null;
   }
 
-  self.hideMarker = function (marker) {
+  self.hideMarker = function(marker) {
     if (self.infowindow.marker == marker)
       self.closeInfoWindow();
     marker.setMap(null);
   };
 
+  self.setContent = function(marker) {
+    var content = `<div><h1>${marker.title}</h1></div>`
+    return content;
+  };
+
   // change to selectMarker
-  self.setInfoWindow = function (marker) {
+  self.setInfoWindow = function(marker) {
     if (self.infowindow.marker != marker) {
-      if (self.infowindow.marker)
+      if (self.infowindow.marker != null)
         self.closeInfoWindow(self.infowindow.marker);
       self.infowindow.marker = marker;
       marker.setAnimation(google.maps.Animation.BOUNCE);
-      var content = `<div><h1>${marker.title}</h1></div>`
+      var content = self.setContent(marker);
       self.infowindow.setContent(content);
       self.infowindow.open(self.map, marker);
     }
   };
 
-  self.dropMarkers = function (indices){
+  self.dropMarkers = function(indices){
     var index = 0;
     for (var i=0; i < self.markers.length; i++) {
       if (i != indices[index]){
