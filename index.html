@@ -28,7 +28,7 @@
               <!-- ko foreach: currentList -->
               <div class="row">
                 <div class='col-md-12'>
-                  <button data-bind="text: name, attr: {id: index, 'data-target': '#anecdote' + index }" data-toggle='modal' class="list-group-item" type="button"></button>
+                  <button data-bind="click: get_pics(), text: name, attr: {id: index, 'data-target': '#anecdote' + index }" data-toggle='modal' class="list-group-item" type="button"></button>
                 </div>
               </div>
               <!-- /ko -->
@@ -56,6 +56,11 @@
             </div>
             <div class="modal-body">
               <p data-bind="text: anecdote"></p>
+              <div class='instagram-pics'>
+              <!-- ko foreach: instagram_pics -->
+              <img style="margin: auto; display: block" class="img-responsive img-thumbnail" data-bind="attr: {alt: alt, src: src}">
+              <!-- /ko -->
+              </div>
             </div>
             <div class="modal-footer">
             </div>
@@ -71,7 +76,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
     <script defer>window.ko || document.write('<script src="js/knockout-min.js">\x3C/script>')</script>
     <!-- bootstrap css backup-->
-    <script defer src="js/dependencies.js"></script>
+    <script defer>
+      setTimeout(function() {
+      // If bootstrap stylesheet failed to load, use local fallback
+        if ($('.row').css('margin-right') != '-15px') {
+          var link_template = '<link rel="stylesheet" href="X">';
+          $('head')
+            .append(link_template.replace(
+              'X',  'css/bootstrap.min.css'))
+        }
+      }, 1000);
+    </script>
     <!-- bootstrap js -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script defer>$.fn.modal || (console.log('loaded twice') && document.write('<script src="js/bootstrap.min.js">\x3C/script>'))</script>

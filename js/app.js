@@ -15,15 +15,38 @@ var ViewModel = function(places, map, error) {
     var indices = selected.map(p => p.index);
     map.dropMarkers(indices);
   };
+
 }
 
 var Place = function(data) {
+  var self = this;
   this.name = data.name;
   this.location = data.location;
   this.address = data.address;
   this.id = data.id;
   this.index = data.index;
   this.anecdote = data.anecdote;
+  this.instagram_pics = ko.observableArray([]);
+  this.get_pics = function() {
+    var instagram_media_url = "https://api.instagram.com/v1/media/search";
+    $.ajax(instagram_media_url, {
+      method: "GET",
+      dataType: "jsonp",
+      data: {
+        lat: this.location.lat,
+        lng: this.location.lng,
+        access_token: "4669943377.05f60cb.3e27daca1b3e4fdfbacd69ac33d9c23d"
+      },
+      success: function(data) {
+        var photos = data.data;
+        self.instagram_pics(photos.map(function(p) {
+          var alt = p.caption ? p.caption.text : "";
+          var src = p.images.thumbnail.url;
+          return {alt: alt, src: src};
+        }));
+      }
+      });
+  };
 }
 
 
@@ -72,7 +95,7 @@ function initVariables(map, error){
         address: "85-12 Main St, Briarwood, NY 11435, United States",
         index: 3,
         anecdote: "good books",
-        icon: "https://cdn.pixabay.com/photo/2016/10/06/19/02/book-1719737_960_720.png",
+        icon: "images/book.png",
     }, {
         name: "Junior High School 217 Robert A Van Wyck",
         id: "68346857b194bea0e1cef38caa8710ea6bf0e0be",
