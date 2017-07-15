@@ -257,8 +257,11 @@ var Map = function() {
 
   self.listTriggerEvents = function() {
     $(".modal").on("show.bs.modal", function(e) {
+      var index = parseInt(e.relatedTarget.id);
+      var marker = self.markers[index];
       self.closeInfoWindow();
     });
+
     $(".modal").on("hidden.bs.modal", function(e) {
         var index = parseInt(e.target.id.substring(8));
         var marker = self.markers[index];
@@ -295,7 +298,7 @@ var Map = function() {
   };
 
   self.setContent = function(marker) {
-    var content = `<div><h1>${marker.title}</h1></div>`
+    var content = `<div><h5>${marker.title}</h5></div>`;
     return content;
   };
 
