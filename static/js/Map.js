@@ -6,7 +6,6 @@ var Map = function() {
   self.bounds = null
   self.nightMapType = null;
   self.zoomLevel = 13;
-  self.closeUp = 15;
   self.center = {lat: 40.7413548, lng: -73.9980244};
 
   self.initMap = function() {
@@ -265,8 +264,8 @@ var Map = function() {
     $(".modal").on("hidden.bs.modal", function(e) {
         var index = parseInt(e.target.id.substring(8));
         var marker = self.markers[index];
+        self.map.setZoom(self.zoomLevel);
         self.map.setCenter(marker.position);
-        self.map.setZoom(self.closeUp);
         self.setInfoWindow(marker);
     });
   };
@@ -274,13 +273,11 @@ var Map = function() {
   self.setBounds = function() {
     self.markers.forEach(m => self.bounds.extend(m.position));
     self.map.fitBounds(self.bounds);
-    /*
     google.maps.event.addListenerOnce(self.map, 'bounds_changed', function(event) {
           if (this.getZoom()){
               this.setZoom(self.zoomLevel);
           }
     });
-    */
   };
 
   // change to unSelectMarker
