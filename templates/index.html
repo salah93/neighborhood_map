@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- personal stylesheet -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -28,7 +28,7 @@
               <!-- ko foreach: currentList -->
               <div class="row">
                 <div class='col-md-12'>
-                  <button data-bind="click: get_pics(), text: name, attr: {id: index, 'data-target': '#anecdote' + index }" data-toggle='modal' class="list-group-item" type="button"></button>
+                  <button state="{{ state() }}" data-bind="click: get_info, text: name, attr: {id: index, 'data-target': '#anecdote' + index }" data-toggle='modal' class="list-group-item" type="button"></button>
                 </div>
               </div>
               <!-- /ko -->
@@ -37,7 +37,7 @@
         </div>
         <div id="map" class="col-md-9 col-sm-9 col-lg-9" >
           <!-- ko if: error -->
-          <h1 class="text-center">could not connect to google maps api</h1><img style="margin: auto; display: block" class="img-thumbnail" src="images/Happy-User-Web-Design.gif" alt="amir from collegehumor clapping his hands. error gif">
+          <h1 class="text-center">could not connect to google maps api</h1><img style="margin: auto; display: block" class="img-thumbnail" src="{{ url_for('static', filename='images/Happy-User-Web-Design.gif') }}" alt="amir from collegehumor clapping his hands. error gif">
           <!-- /ko -->
         </div>
       </div>
@@ -57,9 +57,11 @@
             <div class="modal-body">
               <p data-bind="text: anecdote"></p>
               <div class='instagram-pics'>
-              <!-- ko foreach: instagram_pics -->
-              <img style="margin: auto; display: block" class="img-responsive img-thumbnail" data-bind="attr: {alt: alt, src: src}">
-              <!-- /ko -->
+                <!-- ko foreach: instagram_pics -->
+                <img style="margin: auto; display: block" class="img-responsive img-thumbnail" data-bind="attr: {alt: alt, src: src}">
+                <!-- /ko -->
+              </div>
+              <div class="yelp-reviews">
               </div>
             </div>
             <div class="modal-footer">
@@ -71,10 +73,10 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script defer >window.jQuery || document.write('<script src="js/jquery.min.js">\x3C/script>')</script>
+    <script defer >window.jQuery || document.write('<script src="' + "{{ url_for('static', filename='js/jquery.min.js') }}" + '">\x3C/script>')</script>
     <!-- knockoutjs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
-    <script defer>window.ko || document.write('<script src="js/knockout-min.js">\x3C/script>')</script>
+    <script defer>window.ko || document.write('<script src="' + "{{ url_for('static', filename='js/knockout-min.js') }}" + '">\x3C/script>')</script>
     <!-- bootstrap css backup-->
     <script defer>
       setTimeout(function() {
@@ -89,11 +91,11 @@
     </script>
     <!-- bootstrap js -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script defer>$.fn.modal || (console.log('loaded twice') && document.write('<script src="js/bootstrap.min.js">\x3C/script>'))</script>
+    <script defer>$.fn.modal || document.write('<script src="' + "{{ url_for('static', filename='js/bootstrap.min.js') }}" + '">\x3C/script>')</script>
     <!-- personal js -->
-    <script defer src="js/app.js"></script>
-    <script defer src="js/Map.js"></script>
-    <script defer src="js/init.js"></script>
-    <script defer src="https://maps.googleapis.com/maps/api/js?libraries=places,drawing,geometry&key=AIzaSyB3g2vN2jgGJHVc30WX66C1vmIA5gj6LwQ&v=3&callback=initMap" onerror="googleError()"></script>
+    <script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/Map.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/init.js') }}"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?libraries=places,drawing,geometry&key={{ google_key }}&v=3&callback=initMap" onerror="googleError()"></script>
 	</body>
 </html>
