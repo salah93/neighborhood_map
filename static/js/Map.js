@@ -266,6 +266,7 @@ var Map = function() {
     self.map.setMapTypeId(custom_maptype_id);
 
     self.infowindow.addListener('closeclick', self.closeInfoWindow);
+    self.map.addListener('click', self.closeInfoWindow);
 
     self.markers = initVariables(self, false).map(function(p){
       return new google.maps.Marker({
