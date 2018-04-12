@@ -1,7 +1,7 @@
 function initMap() {
-  new Map().initMap();
+  new MyMap().initiate();
 }
 
 function googleError () {
-    initVariables(new Map(), true);
+    initVariables(new MyMap(), true);
 };

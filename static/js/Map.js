@@ -1,4 +1,4 @@
-var Map = function() {
+var MyMap = function() {
   var self = this;
   self.map = null;
   self.markers = []
@@ -8,7 +8,7 @@ var Map = function() {
   self.zoomLevel = 13;
   self.center = {lat: 40.7413548, lng: -73.9980244};
 
-  self.initMap = function() {
+  self.initiate = function() {
     self.infowindow = new google.maps.InfoWindow();
     self.bounds = new google.maps.LatLngBounds();
     self.silverMapType = new google.maps.StyledMapType(
@@ -254,7 +254,7 @@ var Map = function() {
               }
           ], {name: "Silver"});
 
-    var custom_maptype_id = 'silver_map'
+    const custom_maptype_id = 'silver_map'
     self.map = new google.maps.Map($("#map")[0], {
       center: self.center,
       zoom: self.zoomLevel,
