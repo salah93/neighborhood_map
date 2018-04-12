@@ -6,8 +6,6 @@ A single page application featuring a map of my neighborhood, highlighted locati
 ```
 git clone https://github.com/salah93/neighborhood_map.git
 cd neighborhood_map/
-python -m SimpleHTTPServer
+pip install -r requirements.txt
+python app.py
 ```
-
-Once you do the above (clone repository to local machine, change to directory, and start a server), go to `http://127.0.0.1/5000`
-
