@@ -1,5 +1,5 @@
-var ViewModel = function(places, map, error) {
-  var self = this
+const ViewModel = function(places, map, error) {
+  const self = this
   this.placesList = places.map(function(p){
     return new Place(p);
   });
@@ -9,17 +9,17 @@ var ViewModel = function(places, map, error) {
   this.error = ko.observable(error);
 
   this.filter = function() {
-    var filter = $("#filter").val().toLowerCase();
-    var selected = this.placesList.filter(place => place.name.toLowerCase().match(new RegExp(`.*${filter}.*`)));
+    const filter_value = $("#filter").val().toLowerCase();
+    const selected = this.placesList.filter(place => place.name.toLowerCase().match(new RegExp(`.*${filter_value}.*`)));
     this.currentList(selected);
-    var indices = selected.map(p => p.index);
+    const indices = selected.map(p => p.index);
     map.dropMarkers(indices);
   };
 
 }
 
-var Place = function(data) {
-  var self = this;
+const Place = function(data) {
+  const self = this;
   this.name = data.name;
   this.location = data.location;
   this.address = data.address;
@@ -30,10 +30,10 @@ var Place = function(data) {
   this.yelp_reviews = ko.observableArray([]);
   this.instagram_pics = ko.observableArray([]);
   this.get_info = function(place) {
-    var $button = $(`#${place.index}`);
-    var state_token = $button.attr('state');
-    var yelp_reviews_url =`http://localhost:8000/${place.yelp_id}/yelp_reviews.json`;
-    $.ajax(yelp_reviews_url, {
+    const $button = $(`#${place.index}`);
+    const state_token = $button.attr('state');
+    const yelp_url =`http://localhost:8000/${place.yelp_id}/yelp_reviews.json`;
+    $.ajax(yelp_url, {
       method: "GET",
       dataType: "json",
       data: {
@@ -41,15 +41,16 @@ var Place = function(data) {
       },
       success: function(data) {
         $('.list-group-item').attr('state', data.state);
-        var reviews = data.reviews;
+        let reviews = data.reviews;
         self.yelp_reviews(reviews.map(function(r) {
-          var rating = r.rating;
-          var text = r.text;
+          const rating = r.rating;
+          const text = r.text;
           return {rating: rating, text: text}
         }));
       }
       });
-    var instagram_media_url = "https://api.instagram.com/v1/media/search";
+    const instagram_media_url = "https://api.instagram.com/v1/media/search";
+    const instagram_access_token = "4669943377.05f60cb.3e27daca1b3e4fdfbacd69ac33d9c23d"
     $.ajax(instagram_media_url, {
       method: "GET",
       dataType: "jsonp",
@@ -57,13 +58,13 @@ var Place = function(data) {
         lat: this.location.lat,
         lng: this.location.lng,
         distance: 50,
-        access_token: "4669943377.05f60cb.3e27daca1b3e4fdfbacd69ac33d9c23d"
+        access_token: instagram_access_token
       },
       success: function(data) {
-        var photos = data.data;
+        let photos = data.data;
         self.instagram_pics(photos.map(function(p) {
-          var alt = p.caption ? p.caption.text : "";
-          var src = p.images.thumbnail.url;
+          const alt = p.caption ? p.caption.text : "";
+          const src = p.images.thumbnail.url;
           return {alt: alt, src: src};
         }));
       }
@@ -73,7 +74,7 @@ var Place = function(data) {
 
 
 function initVariables(map, error){
-  var places = [
+  const places = [
     {
         icon: "https://cdn.shopify.com/s/files/1/1061/1924/products/Slice_Of_Pizza_Emoji_large.png?v=1480481064",
         name: "Dani's House of Pizza",

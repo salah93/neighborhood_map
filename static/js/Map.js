@@ -1,5 +1,5 @@
-var MyMap = function() {
-  var self = this;
+const MyMap = function() {
+  const self = this;
   self.map = null;
   self.markers = []
   self.infowindow = null;
@@ -293,14 +293,14 @@ var MyMap = function() {
 
   self.listTriggerEvents = function() {
     $(".modal").on("show.bs.modal", function(e) {
-      //var index = parseInt(e.relatedTarget.id);
-      //var marker = self.markers[index];
+      //const index = parseInt(e.relatedTarget.id);
+      //const marker = self.markers[index];
       self.closeInfoWindow();
     });
 
     $(".modal").on("hidden.bs.modal", function(e) {
-      var index = parseInt(e.target.id.substring(8));
-      var marker = self.markers[index];
+      const index = parseInt(e.target.id.substring(8));
+      const marker = self.markers[index];
       self.map.setCenter(marker.position);
       self.map.setZoom(self.zoomLevel);
       self.setInfoWindow(marker);
@@ -332,7 +332,7 @@ var MyMap = function() {
   };
 
   self.setContent = function(marker) {
-    var content = `<div><h5>${marker.title}</h5></div>`;
+    const content = `<div><h5>${marker.title}</h5></div>`;
     return content;
   };
 
@@ -343,20 +343,20 @@ var MyMap = function() {
         self.closeInfoWindow(self.infowindow.marker);
       self.infowindow.marker = marker;
       marker.setAnimation(google.maps.Animation.BOUNCE);
-      var content = self.setContent(marker);
+      const content = self.setContent(marker);
       self.infowindow.setContent(content);
       self.infowindow.open(self.map, marker);
     }
   };
 
   self.dropMarkers = function(indices){
-    var index = 0;
-    for (var i=0; i < self.markers.length; i++) {
+    let index = 0;
+    for (let i=0; i < self.markers.length; i++) {
       if (i != indices[index]){
         self.hideMarker(self.markers[i]);
       }
       else {
-        var marker = self.markers[i];
+        const marker = self.markers[i];
         if (marker.getMap() == null){
           marker.setAnimation(google.maps.Animation.DROP);
           marker.setMap(self.map);
