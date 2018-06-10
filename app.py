@@ -51,12 +51,6 @@ def get_reviews(yelp_id):
     return jsonify(response)
 
 
-@app.errorhandler(404)
-def page_not_found(e):
-    ''' default 404 page '''
-    return render_template('no_such.html', _object='Page'), 404
-
-
 if __name__ == '__main__':
     secret = random_string(30)
     app.secret_key = secret

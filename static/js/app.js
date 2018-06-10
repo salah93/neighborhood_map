@@ -9,8 +9,8 @@ var ViewModel = function(places, map, error) {
   this.error = ko.observable(error);
 
   this.filter = function() {
-    var filter = $("#filter").val();
-    var selected = this.placesList.filter(place => place.name.match(new RegExp(`.*${filter}.*`)));
+    var filter = $("#filter").val().toLowerCase();
+    var selected = this.placesList.filter(place => place.name.toLowerCase().match(new RegExp(`.*${filter}.*`)));
     this.currentList(selected);
     var indices = selected.map(p => p.index);
     map.dropMarkers(indices);
@@ -56,6 +56,7 @@ var Place = function(data) {
       data: {
         lat: this.location.lat,
         lng: this.location.lng,
+        distance: 50,
         access_token: "4669943377.05f60cb.3e27daca1b3e4fdfbacd69ac33d9c23d"
       },
       success: function(data) {
@@ -84,7 +85,7 @@ function initVariables(map, error){
         yelp_id: "danis-house-of-pizza-kew-gardens",
         google_id: "a139054801fa079999e28a14e287d8262bd73357",
         index: 0,
-        anecdote: "good pizza",
+        anecdote: "A bustling in and out pizza joint that exemplifies new york culture and cuisine. Cheap pizza, no bullshit attitudes, and a friendly space. You want a fast slice? Too bad. You want a good slice? Wait in line like everybody else princess. The place is too busy to be mad at them for the wait time, and the slice too good.",
     }, {
         name: "Martha's Country Bakery",
         location : {
@@ -95,7 +96,7 @@ function initVariables(map, error){
         google_id: "1c66c074132e003bebba0e17a3b92a9584676725",
         yelp_id: "marthas-country-bakery-forest-hills",
         index: 1,
-        anecdote: "marthas",
+        anecdote: "A fond part of my highschool memories, Martha's has multiple locations and all of them are great. I like to dive into a good book with an espresso and napolean berry cake every once in a while.",
         icon: "https://cdn2.iconfinder.com/data/icons/food-desserts-drinks-and-sweets/512/cake1-512.png",
     }, {
         name: "Kew Gardens Cinemas",
@@ -107,7 +108,7 @@ function initVariables(map, error){
         },
         address: "8105 Lefferts Blvd, Kew Gardens, NY 11415, United States",
         index: 2,
-        anecdote: "good movies",
+        anecdote: "I LOVE a good movie. Most flicks are corny and I don't care much for action movies, but Kew Gardens cinemas always has a good selection to view.",
         icon: "http://www.freeiconspng.com/uploads/cinema-movie-theatre-icon-2.png",
     }, {
         name: "Queens Library at Briarwood",
@@ -119,7 +120,7 @@ function initVariables(map, error){
         },
         address: "85-12 Main St, Briarwood, NY 11435, United States",
         index: 3,
-        anecdote: "good books",
+        anecdote: "Everybody loves their local library. This is where I got my first library card, where I read my first books, and where I come to study if I'm looking for a quieter setting.",
         icon: "static/images/book.png",
     }, {
         name: "Junior High School 217 Robert A Van Wyck",
@@ -131,7 +132,7 @@ function initVariables(map, error){
         },
         address: "85-05 144th St, Jamaica, NY 11435, United States",
         index: 4,
-        anecdote: "basketball",
+        anecdote: "Childhoods are shaped through the parks nearest to their homes, and mine was certainly no exception. Friendships made here are forever, and all that matters is basketball.",
         icon: "https://upload.wikimedia.org/wikipedia/commons/d/db/Sports_portal_bar_icon.png",
     },
   ];

@@ -61,8 +61,27 @@
                 <img style="margin: auto; display: block" class="img-responsive img-thumbnail" data-bind="attr: {alt: alt, src: src}">
                 <!-- /ko -->
               </div>
+              <!-- ko if: yelp_reviews().length > 0 -->
               <div class="yelp-reviews">
+                <h3>Yelp Reviews</h3>
+                <table class="table table-striped">
+                  <tr>
+                    <th>Rating</th>
+                    <th>Review</th>
+                  </tr>
+                <!-- ko foreach: yelp_reviews -->
+                <tr>
+                  <td>
+                    <p data-bind="text: rating"></p>
+                  </td>
+                  <td>
+                    <p data-bind="text: text"></p>
+                  </td>
+                </tr>
+                <!-- /ko -->
+                </table>
               </div>
+              <!-- /ko -->
             </div>
             <div class="modal-footer">
             </div>
