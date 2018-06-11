@@ -7,6 +7,7 @@ const ViewModel = function(places, map, error) {
   this.currentList = ko.observableArray(this.placesList);
 
   this.error = ko.observable(error);
+  this.totalLength = ko.observable(places.length);
 
   this.filter = function() {
     const filter_value = $("#filter").val().toLowerCase();
@@ -50,7 +51,7 @@ const Place = function(data) {
       }
       });
     const instagram_media_url = "https://api.instagram.com/v1/media/search";
-    const instagram_access_token = "4669943377.05f60cb.3e27daca1b3e4fdfbacd69ac33d9c23d"
+    const instagram_access_token = "4669943377.05f60cb.3e27daca1b3e4fdfbacd69ac33d9c23d";
     $.ajax(instagram_media_url, {
       method: "GET",
       dataType: "jsonp",
