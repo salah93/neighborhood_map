@@ -33,7 +33,7 @@ const Place = function(data) {
   this.get_info = function(place) {
     const $button = $(`#${place.index}`);
     const state_token = $button.attr('state');
-    const yelp_url =`http://localhost:8000/${place.yelp_id}/yelp_reviews.json`;
+    const yelp_url =`/${place.yelp_id}/yelp_reviews.json`;
     $.ajax(yelp_url, {
       method: "GET",
       dataType: "json",

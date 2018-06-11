@@ -55,5 +55,5 @@ if __name__ == '__main__':
     secret = random_string(30)
     app.secret_key = secret
     app.jinja_env.globals['state'] = generate_state_token
-    params = dict(debug=True, host='localhost', port=8000)
+    params = dict(host='localhost', port=8000)
     app.run(**params)
