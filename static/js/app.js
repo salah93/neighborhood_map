@@ -24,7 +24,6 @@ const Place = function(data) {
   this.name = data.name;
   this.location = data.location;
   this.address = data.address;
-  this.google_id = data.google_id;
   this.index = data.index;
   this.anecdote = data.anecdote;
   this.yelp_id = data.yelp_id;
@@ -58,7 +57,7 @@ const Place = function(data) {
       data: {
         lat: this.location.lat,
         lng: this.location.lng,
-        distance: 50,
+        distance: 1000,
         access_token: instagram_access_token
       },
       success: function(data) {
@@ -85,59 +84,66 @@ function initVariables(map, error){
         },
         address: "81-28 Lefferts Blvd, Kew Gardens, NY 11415, United States",
         yelp_id: "danis-house-of-pizza-kew-gardens",
-        google_id: "a139054801fa079999e28a14e287d8262bd73357",
         index: 0,
         anecdote: "A bustling in and out pizza joint that exemplifies new york culture and cuisine. Cheap pizza, no bullshit attitudes, and a friendly space. You want a fast slice? Too bad. You want a good slice? Wait in line like everybody else princess. The place is too busy to be mad at them for the wait time, and the slice too good.",
     }, {
-        name: "Martha's Country Bakery",
+        icon: "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+        name: "No Pork Halal Kitchen",
         location : {
-          lat: 40.7203786,
-          lng: -73.84603940000001
+          "lat": 40.6832795,
+          "lng": -73.9793
         },
-        address: "70-28 Austin St, Forest Hills, NY 11375, United States",
-        google_id: "1c66c074132e003bebba0e17a3b92a9584676725",
-        yelp_id: "marthas-country-bakery-forest-hills",
+        address: "50 4th Ave, Brooklyn, NY 11217, USA",
+        yelp_id: "no-pork-halal-kitchen-brooklyn",
         index: 1,
-        anecdote: "A fond part of my highschool memories, Martha's has multiple locations and all of them are great. I like to dive into a good book with an espresso and napolean berry cake every once in a while.",
-        icon: "https://cdn2.iconfinder.com/data/icons/food-desserts-drinks-and-sweets/512/cake1-512.png",
+        anecdote: "The best chinese food in the city. Their impatience matched with their cuisine makes this chinese joint uniquely new york",
     }, {
-        name: "Kew Gardens Cinemas",
-        google_id: "7722282e33a1fd5b617ddc9f643433a2d4d82013",
-        yelp_id: "kew-gardens-cinema-kew-gardens",
+        icon:"https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        name: "Force Fitness Club",
+        yelp_id: "force-fitness-club-ridgewood-2",
         location: {
-          "lat": 40.709209,
-          "lng": -73.829797
+          "lat": 40.7119001,
+          "lng": -73.8994671
         },
-        address: "8105 Lefferts Blvd, Kew Gardens, NY 11415, United States",
+        address: "63-03 Fresh Pond Rd, Ridgewood, NY 11385, USA",
         index: 2,
-        anecdote: "I LOVE a good movie. Most flicks are corny and I don't care much for action movies, but Kew Gardens cinemas always has a good selection to view.",
-        icon: "http://www.freeiconspng.com/uploads/cinema-movie-theatre-icon-2.png",
+        anecdote: "Working out.",
     }, {
-        name: "Queens Library at Briarwood",
-        google_id: "e58d0c93a7058ca17db4dd580c07d81bd1eb954e",
-        yelp_id: "queens-borough-public-library-briarwood-briarwood",
+        icon: "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png",
+        name: "Nature's Detox Juice Bar",
+        yelp_id: "natures-detox-queens",
         location: {
-          "lat": 40.7101939,
-          "lng": -73.8193376
+          "lat": 40.7065583,
+          "lng": -73.7924349
         },
-        address: "85-12 Main St, Briarwood, NY 11435, United States",
+        address: "168-03 Jamaica Ave, Jamaica, NY 11435, USA",
         index: 3,
-        anecdote: "Everybody loves their local library. This is where I got my first library card, where I read my first books, and where I come to study if I'm looking for a quieter setting.",
-        icon: "static/images/book.png",
+        anecdote: "Good Food.",
     }, {
-        name: "Junior High School 217 Robert A Van Wyck",
-        google_id: "68346857b194bea0e1cef38caa8710ea6bf0e0be",
-        yelp_id: "",
+        name: "Prospect Park",
+        yelp_id: "prospect-park-brooklyn",
         location: {
-          "lat": 40.71050940000001,
-          "lng": -73.8118746
+          "lat": 40.6602037,
+          "lng": -73.9689558
         },
-        address: "85-05 144th St, Jamaica, NY 11435, United States",
+        address: "Brooklyn, NY 11225, USA",
         index: 4,
-        anecdote: "Childhoods are shaped through the parks nearest to their homes, and mine was certainly no exception. Friendships made here are forever, and all that matters is basketball.",
-        icon: "https://upload.wikimedia.org/wikipedia/commons/d/db/Sports_portal_bar_icon.png",
+        anecdote: "Cool Place to Chill",
+        icon: "https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png",
+    }, {
+        name: "Rockaway Beach",
+        yelp_id: "rockaway-beach-and-boardwalk-rockaway-park",
+        location: {
+          "lat": 40.5833388,
+          "lng": -73.8179384
+        },
+        address: "Queens, NY 11693, USA",
+        index: 5,
+        anecdote: "Beach",
+        icon: "https://maps.gstatic.com/mapfiles/place_api/icons/geocode-71.png",
     },
   ];
+  console.log(places);
 
   ko.applyBindings(new ViewModel(places, map, error));
   return places;
