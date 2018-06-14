@@ -29,7 +29,9 @@ const Place = function(data) {
   self.yelp_reviews = ko.observableArray([]);
   self.instagram_pics = ko.observableArray([]);
   self.get_info = function(place) {
-    if (self.yelp_reviews().length == 0) {
+    const yelp_storage_key = 'yelp-reviews-' + self.index;
+    let stored_array = localStorage[yelp_storage_key];
+    if (! stored_array || JSON.parse(stored_array).length == 0) {
       const $button = $(`#${place.index}`);
       const state_token = $button.attr('state');
       const yelp_url =`/${place.yelp_id}/yelp_reviews.json`;
@@ -47,10 +49,18 @@ const Place = function(data) {
             const text = r.text;
             return {rating: rating, text: text}
           }));
+          localStorage.setItem(yelp_storage_key, JSON.stringify(self.yelp_reviews()));
         }
         });
     }
-    if (self.instagram_pics().length == 0) {
+    else{
+      if (self.yelp_reviews().length == 0) {
+        self.yelp_reviews(JSON.parse(localStorage[yelp_storage_key]));
+      }
+    }
+    const instagram_storage_key = 'instagram-pics-' + self.index;
+    stored_array = localStorage[instagram_storage_key];
+    if (! stored_array || JSON.parse(stored_array).length == 0) {
       const instagram_media_url = "https://api.instagram.com/v1/media/search";
       const instagram_access_token = "4669943377.05f60cb.3e27daca1b3e4fdfbacd69ac33d9c23d";
       $.ajax(instagram_media_url, {
@@ -77,8 +87,21 @@ const Place = function(data) {
             centerMode: true,
             variableWidth: true
           });
+          localStorage.setItem(instagram_storage_key, JSON.stringify(self.instagram_pics()));
         }
+      });
+    } else {
+      if (self.instagram_pics().length == 0) {
+        self.instagram_pics(JSON.parse(localStorage[instagram_storage_key]));
+        $('#instagram-pics' + self.index).slick({
+          dots: true,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 1,
+          centerMode: true,
+          variableWidth: true
         });
+      }
     }
   };
 }
