@@ -124,7 +124,7 @@
     <script defer>$.fn.modal || document.write('<script src="' + "{{ url_for('static', filename='js/bootstrap.min.js') }}" + '">\x3C/script>')</script>
     <!-- personal js -->
     <script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
-    <script defer src="{{ url_for('static', filename='js/Map.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/neighborhood_map.js') }}"></script>
     <script defer src="{{ url_for('static', filename='js/init.js') }}"></script>
     <script defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key={{ google_key }}&v=3&callback=initMap" onerror="googleError()"></script>
 	</body>
