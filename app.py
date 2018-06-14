@@ -46,7 +46,10 @@ def get_reviews(yelp_id):
     yelp_api_url = '{base}/businesses/{yelp_id}/reviews'.format(
             base=config['yelp']['base_url'], yelp_id=yelp_id)
     response = requests.get(yelp_api_url, headers=headers)
-    response = response.json()
+    if response.status_code != 200:
+        response = {'reviews': []}
+    else:
+        response = response.json()
     response['state'] = generate_state_token()
     return jsonify(response)
 

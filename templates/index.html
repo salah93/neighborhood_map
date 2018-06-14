@@ -9,6 +9,9 @@
     <meta name="description" content="">
     <!-- bootstrap css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- slick carousel -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
 
     <!-- personal stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
@@ -29,7 +32,7 @@
               <!-- ko foreach: currentList -->
               <div class="row">
                 <div class="col-md-12">
-                  <button state="{{ state() }}" data-bind="click: get_info, text: name, attr: {id: index, 'data-target': '#anecdote' + index}" data-toggle="modal" class="list-group-item" type="button"></button>
+                  <button state="{{ state() }}" data-bind="click: get_info, text: name, attr: {id: index, 'data-target': '#anecdote-' + index}" data-toggle="modal" class="list-group-item" type="button"></button>
                 </div>
               </div>
               <!-- /ko -->
@@ -46,7 +49,7 @@
 
 
     <!-- ko foreach: currentList -->
-      <div class="modal fade" data-bind="attr: {id: 'anecdote' + index}" tabindex="-1" role="dialog" aria-labelledby="anecdoteLabel" aria-hidden="true">
+      <div class="modal fade" data-bind="attr: {id: 'anecdote-' + index}" tabindex="-1" role="dialog" aria-labelledby="anecdoteLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -57,11 +60,16 @@
             </div>
             <div class="modal-body">
               <p data-bind="text: anecdote"></p>
-              <div class="instagram-pics">
+                <!-- ko if: instagram_pics().length > 0 -->
+                <h3>Instagram Flicks</h3>
+              <div class='instagram-pics' data-bind="attr: {id: 'instagram-pics' + index}">
                 <!-- ko foreach: instagram_pics -->
+                <div>
                 <img style="margin: auto; display: block" class="img-responsive img-thumbnail" data-bind="attr: {alt: alt, src: src}">
+                </div>
                 <!-- /ko -->
               </div>
+                <!-- /ko -->
               <!-- ko if: yelp_reviews().length > 0 -->
               <div class="yelp-reviews">
                 <h3>Yelp Reviews</h3>
@@ -94,6 +102,8 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script defer >window.jQuery || document.write('<script src="' + "{{ url_for('static', filename='js/jquery.min.js') }}" + '">\x3C/script>')</script>
+    <!-- slick carousel -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <!-- knockoutjs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
     <script defer>window.ko || document.write('<script src="' + "{{ url_for('static', filename='js/knockout-min.js') }}" + '">\x3C/script>')</script>

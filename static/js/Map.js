@@ -299,8 +299,9 @@ const MyMap = function() {
     });
 
     $(".modal").on("hidden.bs.modal", function(e) {
-      const index = parseInt(e.target.id.substring(8));
-      const marker = self.markers[index];
+      let id = e.target.id;
+      const index = id.split('-').slice('-1');
+      const marker = self.markers[parseInt(index)];
       self.map.setCenter(marker.position);
       self.map.setZoom(self.zoomLevel);
       self.setInfoWindow(marker);
