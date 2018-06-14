@@ -69,7 +69,7 @@ const Place = function(data) {
         data: {
           lat: self.location.lat,
           lng: self.location.lng,
-          distance: 3000,
+          distance: 1000,
           access_token: instagram_access_token
         },
         success: function(data) {
@@ -141,9 +141,9 @@ function initVariables(map, error){
         },
         address: "63-03 Fresh Pond Rd, Ridgewood, NY 11385, USA",
         index: 2,
-        anecdote: "Working out.",
+        anecdote: "Never crowded, great place to get gains. Its all about them gains.",
     }, {
-        icon: "https://t3.ftcdn.net/jpg/00/94/36/22/240_F_94362233_pNEmR7jQVTivLxCjtlmclswNjzCB0Maf.jpg",
+        icon: "https://t3.ftcdn.net/jpg/00/94/36/22/240_F_94362233_pNEmR7jQVTivLxCjtl.mclswNjzCB0Maf.jpg",
         name: "Nature's Detox Juice Bar",
         yelp_id: "natures-detox-queens",
         location: {
@@ -152,7 +152,7 @@ function initVariables(map, error){
         },
         address: "168-03 Jamaica Ave, Jamaica, NY 11435, USA",
         index: 3,
-        anecdote: "Good Food.",
+        anecdote: "Fresh food, great juice bar, and close to home :).",
     }, {
         name: "Prospect Park",
         yelp_id: "prospect-park-brooklyn",
@@ -162,7 +162,7 @@ function initVariables(map, error){
         },
         address: "Brooklyn, NY 11225, USA",
         index: 4,
-        anecdote: "Cool Place to Chill",
+        anecdote: "A New York gem. It has its own zoo, hosts concerts, and has all around great vibes",
         icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOX3OeTWLMUG3Ib5sCkwLMP9U-l4m8hqZt5R5r7UovXX6g_BxZ",
     }, {
         name: "Rockaway Beach",
@@ -173,7 +173,7 @@ function initVariables(map, error){
         },
         address: "Queens, NY 11693, USA",
         index: 5,
-        anecdote: "Beach",
+        anecdote: "Close to home beach where you can avoid the crowds of the other major NY beaches.",
         icon: "http://icons.iconarchive.com/icons/google/noto-emoji-travel-places/256/42468-beach-with-umbrella-icon.png",
     },
   ];
