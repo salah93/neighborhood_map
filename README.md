@@ -17,6 +17,7 @@ Add a `config.json` with your google-map-key and yelp access token
 ```
 
 ```bash
+sudo npm install -g uglify-es
 git clone https://github.com/salah93/neighborhood_map.git
 cd neighborhood_map/
 cat <<EOF > config.json
@@ -29,5 +30,5 @@ cat <<EOF > config.json
 }
 EOF
 pip install -r requirements.txt
-python app.py
+bash run.sh
 ```
