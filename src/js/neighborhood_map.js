@@ -338,7 +338,6 @@ const MyMap = function() {
 
   self.setContent = function(marker) {
     return new Promise(function(resolve, reject) {
-      console.log(marker.title);
       const request = {
         placeId: marker.place_id,
         fields: [
