@@ -143,7 +143,7 @@ function initVariables(map, error){
         index: 2,
         anecdote: "Never crowded, great place to get gains. Its all about them gains.",
     }, {
-        icon: "https://t3.ftcdn.net/jpg/00/94/36/22/240_F_94362233_pNEmR7jQVTivLxCjtl.mclswNjzCB0Maf.jpg",
+        icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa9Pv4ZPqpMr6O4lC5snVNEnpy6Booq7YfgKLgTm7iJLa7Xo7rgQ",
         name: "Nature's Detox Juice Bar",
         yelp_id: "natures-detox-queens",
         location: {
