@@ -3,3 +3,5 @@
 TODO.md
 .ipynb_checkpoints
 *.min.js
+*.log
+*.min.html

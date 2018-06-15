@@ -2,6 +2,6 @@ function initMap() {
   new MyMap().initiate();
 }
 
-function googleError () {
+function googleError() {
     initVariables(new MyMap(), true);
 };

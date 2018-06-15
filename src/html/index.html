@@ -9,10 +9,6 @@
     <meta name="description" content="">
     <!-- bootstrap css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- slick carousel -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
-
     <!-- personal stylesheet -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 	</head>
@@ -22,7 +18,7 @@
         <div class="col-md-3 col-sm-3 col-lg-3">
           <div class="row">
             <div class="col-md-12">
-              <input placeholder="Filter through list" id="filter" data-bind="textInput: filter()" class="form-control">
+              <input placeholder="Filter through list" id="filter" data-bind="textInput: filter" class="form-control">
             </div>
           </div>
           <hr>
@@ -32,7 +28,7 @@
               <!-- ko foreach: currentList -->
               <div class="row">
                 <div class="col-md-12">
-                  <button state="{{ state() }}" data-bind="click: get_info, text: name, attr: {id: index, 'data-target': '#anecdote-' + index}" data-toggle="modal" class="list-group-item" type="button"></button>
+                  <button data-bind="click: get_info, text: name, attr: {id: index, 'data-target': '#anecdote-' + index}" data-toggle="modal" class="list-group-item" type="button"></button>
                 </div>
               </div>
               <!-- /ko -->
@@ -57,6 +53,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
               <h1 data-bind="text: name" class="modal-title"></h1>
+              <p data-bind="text: address" />
             </div>
             <div class="modal-body">
               <p data-bind="text: anecdote"></p>
@@ -102,8 +99,6 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script defer >window.jQuery || document.write('<script src="' + "{{ url_for('static', filename='js/jquery.min.js') }}" + '">\x3C/script>')</script>
-    <!-- slick carousel -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <!-- knockoutjs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
     <script defer>window.ko || document.write('<script src="' + "{{ url_for('static', filename='js/knockout-min.js') }}" + '">\x3C/script>')</script>

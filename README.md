@@ -18,6 +18,7 @@ Add a `config.json` with your google-map-key and yelp access token
 
 ```bash
 sudo npm install -g uglify-es
+sudo npm install html-minifier -g
 git clone https://github.com/salah93/neighborhood_map.git
 cd neighborhood_map/
 cat <<EOF > config.json

@@ -6,5 +6,5 @@ done
 dir="src/html/*"
 for full_path in $dir; do
     file=`basename $full_path` 
-    html-minifier --collapse-whitespace --minify-js 1 $full_path > templates/$file
+    html-minifier --collapse-whitespace --minify-js 1 $full_path > templates/${file%.html}.min.html
 done
